@@ -1,0 +1,35 @@
+<br><br><br><br><br><br><br><br><br><br>
+<form [formGroup]="loginForm" *ngIf="loginForm">
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-3" style="background-color:lightsteelblue; border-radius: 10px 10px 0px 0px;">
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Usuário</label>
+          <input type="text" formControlName="usuario"  class="form-control" id="usuario" placeholder="usuario">
+        </div>
+        <div class="mb-3">
+          <label for="senha" class="form-label">Senha</label>
+          <input type="password" formControlName="senha"   class="form-control" id="senha" rows="3">
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-3" style="background-color:lightsteelblue; padding-bottom: 5px; border-radius: 0px 0px 10px 10px; ">
+        <!--<div class="float-end">
+          <button type="button" (click)="efetuarLogin()"  class="btn btn-primary">Login</button>
+        </div>-->
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <!--<div class="col-3" >
+        <span style="color: red;"> {{getMessageUserInvalid()}} </span>
+      </div>-->
+      <div class="col"></div>
+    </div>
+  </div>
+</form>
