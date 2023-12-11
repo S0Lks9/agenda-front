@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   usuarioCtrl: FormControl<string>;
   senhaCtrl: FormControl<string>;
+  messageUserInvalid: string;
 
-  constructor(private readonly  fb: FormBuilder) { }
+  constructor(private readonly  fb: FormBuilder,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initializeForm()
@@ -28,8 +31,22 @@ export class LoginComponent implements OnInit {
     this.usuarioCtrl = new FormControl();
     this.senhaCtrl = new FormControl();
     this.loginForm = this.fb.group ({
-      'usuario': this.usuarioCtrl,
+      'login': this.usuarioCtrl,
       'senha': this.senhaCtrl
+    });
+  }
+
+  public efetuarLogin() {
+    let login = this.loginForm.get('login').value;
+    let senha = this.loginForm.get('senha').value;
+
+    this.authService.login (login, senha).subscribe ( (retorno) => {
+      this.messageUserInvalid = "";
+      console.log (retorno);
+    }, (error) => {
+      if (error.status === 401) {
+        this.messageUserInvalid = "Usuário ou Senha inválidos."
+      }
     });
   }
 
