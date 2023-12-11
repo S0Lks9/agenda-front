@@ -8,6 +8,10 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'compromisso',
+    loadChildren: () => import('./compromisso/compromisso.module').then(x => x.CompromissoModule)
   }
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   messageUserInvalid: string;
 
   constructor(private readonly  fb: FormBuilder,
+              private router: Router,
               private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login (login, senha).subscribe ( (retorno) => {
       this.messageUserInvalid = "";
-      console.log (retorno);
+      this.router.navigate(['compromisso']);
     }, (error) => {
       if (error.status === 401) {
         this.messageUserInvalid = "Usuário ou Senha inválidos."
