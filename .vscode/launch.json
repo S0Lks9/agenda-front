@@ -3,6 +3,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "AgendaApplication",
+      "request": "launch",
+      "mainClass": "com.uninassau.agenda.AgendaApplication",
+      "projectName": "agenda"
+    },
+    {
       "name": "ng serve",
       "type": "pwa-chrome",
       "request": "launch",
