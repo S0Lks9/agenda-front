@@ -1,9 +1,11 @@
 <br>
 <div class="row">
-    <div class="col-6">
+    <div class="col-6" style="padding-left: 5%;">
+      <span *ngIf="getUsuarioLogado() === 'Jose da Silva'"  > Aluno: {{getUsuarioLogado()}} </span>
+      <span *ngIf="getUsuarioLogado() === 'Marlon Silva'"  > Professor: {{getUsuarioLogado()}} </span>
     </div>
     <div class="col-6" style="text-align: right; padding-right: 5%;">
       <button type="button" (click)="efetuarLogout()"  class="btn btn-primary">Logout</button>
     </div>
   </div>
-<router-outlet></router-outlet>
+<app-listagem></app-listagem>

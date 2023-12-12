@@ -1,0 +1,23 @@
+<div class="container">
+  <br><br>
+  <table id="example" class="table table-striped" style="width:100%">
+
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Descricao</th>
+            <th> <span title="Usa pipe" > Data/Hora</span></th>
+            <th>Local</th>
+            <th><span title="Usa pipe" >Responsavel </span></th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let compromisso of compromissos; index as i;" >
+            <td>{{compromisso.titulo}}</td>
+            <td>{{compromisso.descricao}}</td>
+            <td>{{compromisso.dataHora | dataBr}}</td>
+            <td>{{compromisso.local}}</td>
+            <td>{{compromisso.responsavel | primeiroNome}}</td>
+      </tr>
+  </table>
+</div>

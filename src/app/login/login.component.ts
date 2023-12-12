@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ContextoUsuarioService } from '../services/contexto-usuario.service';
+import { Usuario } from '../model/usuario';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private readonly  fb: FormBuilder,
               private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private contextoUsuarioService: ContextoUsuarioService) { }
 
   ngOnInit(): void {
     this.initializeForm()
@@ -42,8 +45,9 @@ export class LoginComponent implements OnInit {
     let login = this.loginForm.get('login').value;
     let senha = this.loginForm.get('senha').value;
 
-    this.authService.login (login, senha).subscribe ( (retorno) => {
+    this.authService.login (login, senha).subscribe ( (usuario: Usuario) => {
       this.messageUserInvalid = "";
+      this.contextoUsuarioService.usuarioLogado = usuario;
       this.router.navigate(['compromisso']);
     }, (error) => {
       if (error.status === 401) {

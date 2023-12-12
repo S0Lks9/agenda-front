@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ContextoUsuarioService } from '../services/contexto-usuario.service';
 
 @Component({
   selector: 'app-compromisso',
@@ -8,7 +9,9 @@ import { Router } from '@angular/router';
 })
 export class CompromissoComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              public contextoUsuarioService: ContextoUsuarioService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -18,5 +21,13 @@ export class CompromissoComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  public getUsuarioLogado():string {
+    if (this.contextoUsuarioService.usuarioLogado){
+      return this.contextoUsuarioService.usuarioLogado.nome;
+    } else {
+      return "";
+    }
 
+
+  }
 }
